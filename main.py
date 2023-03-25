@@ -48,7 +48,7 @@ class NewOrderScreen(Screen):
 
     def add_new_order(self):
   
-        puff_excel.add_order(self.ids.isim.text,self.ids.telefon_no.text,self.ids.urun.text,self.ids.adet.text,self.ids.pay_info_button.text )
+        puff_excel.add_order(self.ids.isim.text,self.ids.telefon_no.text,self.ids.urun.text,self.ids.adet.text,self.ids.note.text,self.ids.pay_info_button.text )
 
 
 

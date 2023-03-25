@@ -22,12 +22,12 @@ class PufExcell:
     def add_order(self,*args):
         
         if self.sheet.max_row == 1:
-            self.sheet.append(('SİP_NO','EKLENME TARİHİ','İSİM', 'TELEFON NO', 'ÜRÜN', 'ADET','ÖDEME DURUMU'))        
+            self.sheet.append(('SİP_NO','İSİM', 'TELEFON NO', 'ÜRÜN', 'ADET','ÖDEME DURUMU','SİPARİŞ TARİHİ','NOT'))        
         
         
         for i in range(self.sheet.max_row, self.sheet.max_row+1):
             print(i)
-            self.sheet.append(([i] + list(args)))
+            self.sheet.append(([i] + list(args)+[date_string]))
 
         self.save_workbook()
         self.book.close() 
