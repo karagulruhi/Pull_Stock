@@ -107,11 +107,13 @@
                 text: 'Telefon No:'
                 size_hint_x: 0.25
                 halign: 'right'
+                
 
             TextInput:
                 id: telefon_no
                 size_hint_x: 0.75
                 multiline:False
+                input_filter: "int"
         BoxLayout:
             orientation: 'horizontal'
             
@@ -142,6 +144,7 @@
                 id: adet
                 size_hint_x: 0.75
                 multiline:False
+                input_filter: "int"
         BoxLayout:
             orientation: 'horizontal'
            
@@ -155,6 +158,7 @@
 
             TextInput:
                 id: note
+                text:'-'
                 size_hint_x: 0.75
                 multiline:False
         BoxLayout:
