@@ -96,6 +96,7 @@
                 id: isim
                 size_hint_x: 0.75
                 multiline:False
+          
         BoxLayout:
             orientation: 'horizontal'
             
@@ -170,6 +171,7 @@
                 id: update_order
                 size_hint_x: 0.3
                 pos_hint: {'center_x': 0.8,'center_y': 0.5}
+                disabled: True if isim.text == '' or urun.text == '' or telefon_no.text == '' else False     
                 on_press:
                     root.add_new_order()
         
