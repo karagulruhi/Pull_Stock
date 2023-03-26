@@ -37,7 +37,7 @@
             text:"ARA"
             id: search_order
             on_press:
-                root.manager.current = 'update'
+                root.manager.current = 'choose'
                 root.get_order()
         Button:
             text:"Ane Menü"
@@ -45,7 +45,34 @@
             on_press:
                 root.manager.current = 'main'
 
-<ChooseScreen>:         
+<ChooseOrderScreen>:
+    size_hint:0.6,0.7
+    pos_hint: {'center_x': 0.5,'center_y': 0.5}
+    FloatLayout:
+        Button:
+            text:"Geri Dön"
+            id: back
+            size_hint:(0.1,.1)
+            pos: -100, -30
+            on_press:
+                root.manager.current = 'search'
+        Button:
+            text:"ID----İSİM---TELEFON---ÜRÜN---ADET---NOT---ÖDEME_DURMU"
+            id: back
+            size_hint:(0.9,.1)
+            pos_hint:{'x':0.05,'y':0.999999}
+    
+
+
+
+
+
+
+
+
+
+
+
 
 
 <UpdateOrderScreen>:

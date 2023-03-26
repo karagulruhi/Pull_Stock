@@ -36,24 +36,24 @@ class PufExcell:
     def update_order_excel(self,order):
         
         
-        
-        for row in self.sheet.iter_rows(min_row=1, min_col=1, max_row=None, max_col=2):
-            temp_orders=[]
-            
-            for cell in row:  
+        if len(self.orders)==0:
+            for row in self.sheet.iter_rows(min_row=1, min_col=1, max_row=None, max_col=2):
                 
-                if cell.value == order:
+                temp_orders=[]
+                for cell in row:  
                     
-                    
-                    for c in self.sheet.iter_cols(min_row=cell.row, max_row=cell.row):
+                    if cell.value == order:
                         
-                        for r in c:
+                        
+                        for c in self.sheet.iter_cols(min_row=cell.row, max_row=cell.row):
                             
+                            for r in c:
+                                
+                                
+                                temp_orders.append(r.value)
                             
-                            temp_orders.append(r.value)
-                        
-                    self.orders.append(temp_orders)
-                        
+                        self.orders.append(temp_orders)
+                            
         self.save_workbook()
         self.book.close() 
         
