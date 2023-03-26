@@ -45,19 +45,141 @@
             on_press:
                 root.manager.current = 'main'
 
-         
+<ChooseScreen>:         
 
 
 <UpdateOrderScreen>:
-    
 
-    FloatLayout:
-        Button:
-            text:'ARAMA GERi'
-            id: back_search
-            size_hint:0.6,0.7
-            on_press:
-                root.manager.current = 'search'
+    BoxLayout:
+        orientation: 'vertical'
+        
+        height: self.minimum_height
+        spacing: 10
+
+
+        BoxLayout:
+            orientation: 'horizontal'
+           
+            height: self.minimum_height
+            spacing: 10
+
+            Label:
+                text: 'İsim:'
+                size_hint_x: 0.25
+                halign: 'right'
+
+            TextInput:
+                id: isim_u
+                size_hint_x: 0.75
+                multiline:False
+          
+        BoxLayout:
+            orientation: 'horizontal'
+            
+            height: self.minimum_height
+            spacing: 10
+
+            Label:
+                text: 'Telefon No:'
+                size_hint_x: 0.25
+                halign: 'right'
+                
+
+            TextInput:
+                id: telefon_no_u
+                size_hint_x: 0.75
+                multiline:False
+                input_filter: "int"
+        BoxLayout:
+            orientation: 'horizontal'
+            
+            height: self.minimum_height
+            spacing: 10
+
+            Label:
+                text: 'Ürün:'
+                size_hint_x: 0.25
+                halign: 'right'
+
+            TextInput:
+                id: urun_u
+                size_hint_x: 0.75
+                multiline:False
+        BoxLayout:
+            orientation: 'horizontal'
+           
+            height: self.minimum_height
+            spacing: 10
+
+            Label:
+                text: 'Adet:'
+                size_hint_x: 0.25
+                halign: 'right'
+
+            TextInput:
+                id: adet_u
+                size_hint_x: 0.75
+                multiline:False
+                input_filter: "int"    
+        BoxLayout:
+            orientation: 'horizontal'
+           
+            height: self.minimum_height
+            spacing: 10
+
+            Label:
+                text: 'Not:'
+                size_hint_x: 0.25
+                halign: 'right'
+
+            TextInput:
+                id: note_u
+                text:'-'
+                size_hint_x: 0.75
+                multiline:False
+        BoxLayout:
+            orientation: 'horizontal'
+           
+            height: self.minimum_height
+            spacing: 10
+
+            Label:
+                text: 'Sipariş Ödemesi:'
+                size_hint_x: 0.25
+                halign: 'right'
+            Button:
+                text:"ÖDEME ALINMADI"
+                id:pay_info_button
+                size_hint_x: 0.4
+                background_color : 1.0, 0.0, 0.0, 1.0
+            Button:
+                text:""
+                size_hint_x: 0.4
+                
+                on_press:
+                    root.paymentInfo()
+
+
+        FloatLayout:
+            Button:
+                text:"SİPARİŞ GÜNCELLE"
+                id: update_order
+                size_hint_x: 0.3
+                pos_hint: {'center_x': 0.8,'center_y': 0.5}
+                disabled: True if isim_u.text == '' or urun_u.text == '' or telefon_no_u.text == ''or adet_U.text == ''  else False     
+                on_press:
+                    root.update_order()        
+        
+        
+        
+        
+        FloatLayout:
+            Button:
+                text:'ARAMA GERi'
+                id: back_search
+                size_hint:0.6,0.7
+                on_press:
+                    root.manager.current = 'search'
 
 
 

@@ -13,7 +13,7 @@ class PufExcell:
         self.book = load_workbook(filename=file_path)
         #self.sheet = self.book.create_sheet(title=date_string) if date_string not in self.book.sheetnames else self.book[date_string]#create new sheet every day
         self.sheet = self.book.active
-
+        self.orders = [] 
 
     def save_workbook(self):
         self.book.save(self.file_path)
@@ -33,21 +33,31 @@ class PufExcell:
         self.book.close() 
 
     
-    def upload_order(self,order):
+    def update_order_excel(self,order):
         
-        self.orders=[]
+        
         
         for row in self.sheet.iter_rows(min_row=1, min_col=1, max_row=None, max_col=2):
+            temp_orders=[]
+            
             for cell in row:  
+                
                 if cell.value == order:
-                    print(cell.row)
+                    
+                    
                     for c in self.sheet.iter_cols(min_row=cell.row, max_row=cell.row):
+                        
                         for r in c:
-                            self.orders.append(r.value)
-        print(self.orders)
+                            
+                            
+                            temp_orders.append(r.value)
+                        
+                    self.orders.append(temp_orders)
+                        
         self.save_workbook()
         self.book.close() 
-
+        
+        return self.orders
 
 
 

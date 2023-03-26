@@ -19,18 +19,15 @@ class MainScreen(Screen):
 class SearchScreen(Screen):
     def __init__(self, **kwargs):
         super(SearchScreen, self).__init__(**kwargs)
+        
     def get_order(self):
-         puff_excel.upload_order(self.ids.name_search.text)
+        orders=puff_excel.update_order_excel(self.ids.name_search.text)
+        print(orders[0][1])
+        
 
 
 
 
-class UpdateOrderScreen(Screen):
-    def __init__(self, **kwargs):
-        super(UpdateOrderScreen, self).__init__(**kwargs)
-    def get_order(self):
-         puff_excel.upload_order(self.ids.name_search.text)
- 
 
 class NewOrderScreen(Screen):
     def __init__(self, **kwargs):
@@ -50,7 +47,14 @@ class NewOrderScreen(Screen):
   
         puff_excel.add_order(self.ids.isim.text,self.ids.telefon_no.text,self.ids.urun.text,self.ids.adet.text,self.ids.note.text,self.ids.pay_info_button.text )
 
+class UpdateOrderScreen(Screen):
+    def __init__(self, **kwargs):
+        super(UpdateOrderScreen, self).__init__(**kwargs)
+        
+    # def update_order(self):
+      
 
+        
 
 
 
