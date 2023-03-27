@@ -27,7 +27,7 @@ class SearchScreen(Screen):
         super(SearchScreen, self).__init__(**kwargs)
      
     def get_order(self):
-        orders = puff_excel.find_order_excel(self.ids.name_search.text)
+        orders = puff_excel.find_order_excel(self.ids.product_search.text)
         # Sadece bir sipariş varsa, bu siparişi bir liste içine yerleştirin
 
         return orders
@@ -125,6 +125,7 @@ class NewOrderScreen(Screen):
         puff_excel.add_order(self.ids.isim.text,self.ids.telefon_no.text,self.ids.urun.text,self.ids.adet.text,self.ids.note.text,self.ids.pay_info_button.text )
 
 
+
 class StockControlScreen(Screen):
     def __init__(self, **kwargs):
         super(StockControlScreen, self).__init__(**kwargs)
@@ -138,7 +139,12 @@ class addStockScreen(Screen):
   
         stock_excel.add_stock(self.ids.stock_urun.text,self.ids.stock_adet.text)
 
-
+class stockSearchScreen(Screen):
+    def __init__(self, **kwargs):
+        super(stockSearchScreen, self).__init__(**kwargs)
+    def get_product(self):
+        products = stock_excel.find_product_excel(self.ids.product_search.text)
+        return products
         
 
 
@@ -167,6 +173,7 @@ class PuffStock(App):
         sm.add_widget(UpdateOrderScreen(name='update'))
         sm.add_widget(StockControlScreen(name='stock'))
         sm.add_widget(addStockScreen(name='addstock'))
+        sm.add_widget(stockSearchScreen(name='searchstock'))
         return sm
 
 

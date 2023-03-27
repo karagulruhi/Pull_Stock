@@ -11,6 +11,7 @@ class StockExcell:
     def __init__(self,file_path='puffstock.xlsx'):
         self.file_path = file_path
         self.book = load_workbook(filename=file_path)
+        self.product = [] 
         if "Stock" in self.book.sheetnames:
             self.s_sheet = self.book["Stock"]
         else:
@@ -26,6 +27,28 @@ class StockExcell:
             self.s_sheet.append(args)
 
             self.save_workbook()
-     
+    def find_product_excel(self,product):
+        
+         
+        if len(self.product)==0:
+            for row in self.s_sheet.iter_rows(min_row=1, min_col=1, max_row=None, max_col=2):
+                
+                temp_orders=[]
+                for cell in row:  
+                    
+                    if cell.value == product:
+                        
+                        
+                        for c in self.s_sheet.iter_cols(min_row=cell.row, max_row=cell.row):
+                            
+                            for r in c:
+                                
+                                
+                                temp_orders.append(r.value)
+                            
+                        self.product.append(temp_orders)
+                            
+        self.save_workbook()
+        return self.product
         # for i in range(self.sheet.max_row, self.sheet.max_row+1):
             
