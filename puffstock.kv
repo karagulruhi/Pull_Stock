@@ -33,12 +33,15 @@
             multiline:False
             id:name_search
             padding_y:40,40
+            
         Button:
             text:"ARA"
             id: search_order
+            disabled: True if name_search.text == '' else False 
             on_press:
                 root.manager.current = 'choose'
                 root.get_order()
+
         Button:
             text:"Ane Menü"
             id: back
@@ -108,12 +111,14 @@
 
             Label:
                 text: 'Telefon No:'
+                text:""
                 size_hint_x: 0.25
                 halign: 'right'
                 
 
             TextInput:
                 id: telefon_no_u
+                text:""
                 size_hint_x: 0.75
                 multiline:False
                 input_filter: "int"
@@ -130,6 +135,7 @@
 
             TextInput:
                 id: urun_u
+                text:""
                 size_hint_x: 0.75
                 multiline:False
         BoxLayout:
@@ -145,6 +151,7 @@
 
             TextInput:
                 id: adet_u
+                text:""
                 size_hint_x: 0.75
                 multiline:False
                 input_filter: "int"    
@@ -176,15 +183,15 @@
                 halign: 'right'
             Button:
                 text:"ÖDEME ALINMADI"
-                id:pay_info_button
+                id:pay_info_button_u
                 size_hint_x: 0.4
-                background_color : 1.0, 0.0, 0.0, 1.0
+                
             Button:
                 text:""
                 size_hint_x: 0.4
                 
                 on_press:
-                    root.paymentInfo()
+                    root.paymentInfo_u()
 
 
         FloatLayout:
@@ -193,10 +200,17 @@
                 id: update_order
                 size_hint_x: 0.3
                 pos_hint: {'center_x': 0.8,'center_y': 0.5}
-                disabled: True if isim_u.text == '' or urun_u.text == '' or telefon_no_u.text == ''or adet_U.text == ''  else False     
+                disabled: True if isim_u.text == '' or urun_u.text == '' or telefon_no_u.text == ''or adet_u.text == ''  else False     
                 on_press:
                     root.update_order()        
-        
+        FloatLayout:
+            Button:
+                text:'SİL'
+                id: back_search
+                size_hint_x: 0.1
+                pos_hint: {'center_x': 0.1,'center_y': 0.2}
+                on_press:
+                    root.dalete_order()
         
         
         
@@ -240,9 +254,10 @@
                 text: 'İsim:'
                 size_hint_x: 0.25
                 halign: 'right'
-
+    
             TextInput:
-                id: isim
+                id:isim
+                text:''
                 size_hint_x: 0.75
                 multiline:False
           
@@ -260,6 +275,7 @@
 
             TextInput:
                 id: telefon_no
+                text:''
                 size_hint_x: 0.75
                 multiline:False
                 input_filter: "int"
@@ -276,6 +292,7 @@
 
             TextInput:
                 id: urun
+                text:''
                 size_hint_x: 0.75
                 multiline:False
         BoxLayout:
@@ -291,6 +308,7 @@
 
             TextInput:
                 id: adet
+                text:''
                 size_hint_x: 0.75
                 multiline:False
                 input_filter: "int"
