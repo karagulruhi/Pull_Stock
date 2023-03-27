@@ -19,17 +19,13 @@ class MainScreen(Screen):
     def __init__(self, **kwargs):
         super(MainScreen, self).__init__(**kwargs)
 
-    def on_pre_enter(self, *args):
-        # önbelleği temizle
-        my_function.cache_clear()
+
 
 
 class SearchScreen(Screen):
     def __init__(self, **kwargs):
         super(SearchScreen, self).__init__(**kwargs)
-    def on_pre_enter(self, *args):
-        # önbelleği temizle
-        my_function.cache_clear()       
+     
     def get_order(self):
         orders = puff_excel.find_order_excel(self.ids.name_search.text)
         # Sadece bir sipariş varsa, bu siparişi bir liste içine yerleştirin
@@ -41,11 +37,7 @@ class ChooseOrderScreen(Screen):
         super(ChooseOrderScreen, self).__init__(**kwargs)
         self.orders = []
         self.create_buttons()
-    
-    def on_pre_enter(self, *args):
-        # önbelleği temizle
-        my_function.cache_clear()        
-    
+
     def on_enter(self):
        
         search_screen = self.manager.get_screen('search')
@@ -110,8 +102,8 @@ class UpdateOrderScreen(Screen):
         puff_excel.update_order_excel(self.ids.isim_u.text,self.ids.telefon_no_u.text,self.ids.urun_u.text,self.ids.adet_u.text,self.ids.note_u.text,self.ids.pay_info_button_u.text)
         # print(self.orders)
     
-    def dalete_order(self):
-        puff_excel.update_order_excel(self.ids.isim_u.text,self.ids.telefon_no_u.text,self.ids.urun_u.text,self.ids.adet_u.text,self.ids.note_u.text,self.ids.pay_info_button_u.text)
+    def delete_order(self):
+        puff_excel.delete_order_excel(self.ids.isim_u.text,self.ids.telefon_no_u.text,self.ids.urun_u.text,self.ids.adet_u.text,self.ids.note_u.text,self.ids.pay_info_button_u.text)
 
 
 class NewOrderScreen(Screen):
@@ -132,7 +124,9 @@ class NewOrderScreen(Screen):
   
         puff_excel.add_order(self.ids.isim.text,self.ids.telefon_no.text,self.ids.urun.text,self.ids.adet.text,self.ids.note.text,self.ids.pay_info_button.text )
 
-
+class StockControlScreen(Screen):
+    def __init__(self, **kwargs):
+        super(StockControlScreen, self).__init__(**kwargs)
         
     # def update_order(self):
       

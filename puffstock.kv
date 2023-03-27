@@ -18,6 +18,18 @@
             pos_hint:{'x':0.0,'y':0.5}
             on_press:
                 root.manager.current = 'search'
+        Button:
+            text:"STOK KONTROL"
+            id: update_order
+            size_hint:(0.2,.2)
+            pos_hint:{'x':0.0,'y':0.5}
+            on_press:
+                root.manager.current = 'stock'
+
+
+
+
+
 
 
 <SearchScreen>:
@@ -210,7 +222,7 @@
                 size_hint_x: 0.1
                 pos_hint: {'center_x': 0.1,'center_y': 0.2}
                 on_press:
-                    root.dalete_order()
+                    root.delete_order()
         
         
         
@@ -368,3 +380,56 @@
                 pos_hint: {'center_x': 0.2,'center_y': 0.5}
                 on_press:
                     root.manager.current='main'
+
+<StockControlScree>
+
+
+    BoxLayout:
+        orientation: 'vertical'
+        
+        height: self.minimum_height
+        spacing: 10
+
+
+
+
+        BoxLayout:
+            orientation: 'horizontal'
+           
+            height: self.minimum_height
+            spacing: 10
+
+            Label:
+                text: 'Ürün:'
+                size_hint_x: 0.25
+                halign: 'right'
+    
+            TextInput:
+                id:stock_urun
+                text:''
+                size_hint_x: 0.75
+                multiline:False
+          
+        BoxLayout:
+            orientation: 'horizontal'
+            
+            height: self.minimum_height
+            spacing: 10
+
+            Label:
+                text: 'Adet:'
+                size_hint_x: 0.25
+                halign: 'right'
+                
+
+            TextInput:
+                id: stock_adet
+                text:''
+                size_hint_x: 0.75
+                multiline:False
+                input_filter: "int"
+            Button:
+                text:"ÖDEME ALINMADI"
+                id:pay_info_button
+                size_hint_x: 0.4
+               
