@@ -7,7 +7,7 @@ from kivy.uix.button import Button
 from kivy.uix.gridlayout import GridLayout
 from functools import partial
 from kivy.uix.textinput import TextInput
-
+from functools import lru_cache
 from puffExcel import PufExcell
 
 
@@ -15,17 +15,21 @@ puff_excel = PufExcell()
 
 
 class MainScreen(Screen):
-   
+    
     def __init__(self, **kwargs):
         super(MainScreen, self).__init__(**kwargs)
 
-
+    def on_pre_enter(self, *args):
+        # önbelleği temizle
+        my_function.cache_clear()
 
 
 class SearchScreen(Screen):
     def __init__(self, **kwargs):
         super(SearchScreen, self).__init__(**kwargs)
-        
+    def on_pre_enter(self, *args):
+        # önbelleği temizle
+        my_function.cache_clear()       
     def get_order(self):
         orders = puff_excel.find_order_excel(self.ids.name_search.text)
         # Sadece bir sipariş varsa, bu siparişi bir liste içine yerleştirin
@@ -37,7 +41,11 @@ class ChooseOrderScreen(Screen):
         super(ChooseOrderScreen, self).__init__(**kwargs)
         self.orders = []
         self.create_buttons()
-        
+    
+    def on_pre_enter(self, *args):
+        # önbelleği temizle
+        my_function.cache_clear()        
+    
     def on_enter(self):
        
         search_screen = self.manager.get_screen('search')
