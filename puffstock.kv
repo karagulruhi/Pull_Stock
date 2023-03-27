@@ -22,9 +22,9 @@
             text:"STOK KONTROL"
             id: update_order
             size_hint:(0.2,.2)
-            pos_hint:{'x':0.0,'y':0.5}
+            pos_hint:{'x':0.0,'y':0.2}
             on_press:
-                root.manager.current = 'stock'
+                root.manager.current = 'addstock'
 
 
 
@@ -381,8 +381,13 @@
                 on_press:
                     root.manager.current='main'
 
-<StockControlScree>
 
+
+
+
+
+
+<addStockScreen>:
 
     BoxLayout:
         orientation: 'vertical'
@@ -394,42 +399,49 @@
 
 
         BoxLayout:
-            orientation: 'horizontal'
-           
+            orientation: 'vertical'
+            size_hint:1,0.5
             height: self.minimum_height
             spacing: 10
 
             Label:
                 text: 'Ürün:'
-                size_hint_x: 0.25
-                halign: 'right'
-    
+                size_hint:1,0.5
+
             TextInput:
                 id:stock_urun
                 text:''
-                size_hint_x: 0.75
+                size_hint:1,0.5
                 multiline:False
           
         BoxLayout:
-            orientation: 'horizontal'
+            orientation: 'vertical'
             
             height: self.minimum_height
             spacing: 10
 
             Label:
                 text: 'Adet:'
-                size_hint_x: 0.25
-                halign: 'right'
-                
-
+                size_hint:1,0.5
+              
             TextInput:
                 id: stock_adet
                 text:''
-                size_hint_x: 0.75
+                size_hint:1,0.5
                 multiline:False
                 input_filter: "int"
             Button:
-                text:"ÖDEME ALINMADI"
+                text:"ÜRÜN EKLE"
                 id:pay_info_button
-                size_hint_x: 0.4
                
+                size_hint:1,0.5
+                on_press:
+                    root.add_new_stock()
+            Button:
+                text:"Ana Menü"
+                id:back_main
+               
+                size_hint:1,0.5
+                on_press:
+                    root.manager.current='main'
+<StockControlScreen>:

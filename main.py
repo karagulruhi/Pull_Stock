@@ -9,10 +9,10 @@ from functools import partial
 from kivy.uix.textinput import TextInput
 from functools import lru_cache
 from puffExcel import PufExcell
-
+from stock import StockExcell
 
 puff_excel = PufExcell()
-
+stock_excel= StockExcell()
 
 class MainScreen(Screen):
     
@@ -124,12 +124,20 @@ class NewOrderScreen(Screen):
   
         puff_excel.add_order(self.ids.isim.text,self.ids.telefon_no.text,self.ids.urun.text,self.ids.adet.text,self.ids.note.text,self.ids.pay_info_button.text )
 
+
 class StockControlScreen(Screen):
     def __init__(self, **kwargs):
         super(StockControlScreen, self).__init__(**kwargs)
-        
-    # def update_order(self):
-      
+
+
+
+class addStockScreen(Screen):
+    def __init__(self, **kwargs):
+        super(addStockScreen, self).__init__(**kwargs)
+    def add_new_stock(self):
+  
+        stock_excel.add_stock(self.ids.stock_urun.text,self.ids.stock_adet.text)
+
 
         
 
@@ -157,7 +165,8 @@ class PuffStock(App):
         sm.add_widget(SearchScreen(name='search'))
         sm.add_widget(ChooseOrderScreen(name='choose'))
         sm.add_widget(UpdateOrderScreen(name='update'))
-
+        sm.add_widget(StockControlScreen(name='stock'))
+        sm.add_widget(addStockScreen(name='addstock'))
         return sm
 
 
