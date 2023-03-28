@@ -27,28 +27,33 @@ class SearchScreen(Screen):
         super(SearchScreen, self).__init__(**kwargs)
      
     def get_order(self):
-        orders = puff_excel.find_order_excel(self.ids.product_search.text)
-        # Sadece bir sipariş varsa, bu siparişi bir liste içine yerleştirin
-
+        orders = puff_excel.find_order_excel(self.ids.name_search.text)
+        
+        print(orders)
         return orders
             
 class ChooseOrderScreen(Screen):        
     def __init__(self, **kwargs):
         super(ChooseOrderScreen, self).__init__(**kwargs)
         self.orders = []
+        
         self.create_buttons()
-
+     
     def on_enter(self):
        
         search_screen = self.manager.get_screen('search')
         self.orders = search_screen.get_order()
-        
+       
         self.create_buttons()
-
+       
     def create_buttons(self):
+        
         layout = BoxLayout(orientation='vertical')
+ 
+        
         for order in self.orders:
-            print(order)
+           
+            
             id = ''.join(str(i) for i in order[0:2])
             text='***'.join(str(i) for i in order[0:7])
             btn = Button(text=text)
@@ -58,7 +63,7 @@ class ChooseOrderScreen(Screen):
             btn.bind(on_press=partial(self.switch_to_next_screen, order=order))
             btn.background_color = (0., 0.4, 0.4, 1)
             layout.add_widget(btn)
-   
+        self.orders=[]
         self.add_widget(layout)
     def switch_to_next_screen(self, instance,order):
         print(order)
@@ -136,7 +141,7 @@ class StockControlScreen(Screen):
         pro_search_screen = self.manager.get_screen('searchstock')
         self.product = pro_search_screen.get_product()
         self.create_label_text(self.product)
-
+        
     def create_label_text(self,product):
         try:
             layout = BoxLayout(orientation='vertical')
@@ -147,20 +152,17 @@ class StockControlScreen(Screen):
             product_amount = TextInput(text=product[0][2])
             self.ids['amount_id'] = product_amount
 
-            layout = BoxLayout(orientation='vertical')
-        
             layout.add_widget(label1)
             layout.add_widget(product_name)
             layout.add_widget(label2)
             layout.add_widget(product_amount)
             self.add_widget(layout)
             self.product=product[0][0]+1
-        except IndexError: 
-            print("Oops!  That was no valid number.  Try again...")
-            erorr= Label(text='böyle bir ürün yok')
-            layout.add_widget(erorr)
-            self.add_widget(layout)
-    def updete_product(self):
+        except:
+             self.manager.current = 'searchstock'
+             self.ids.pro_but.text="ÜRÜN BULUNAMADI"
+
+    def update_product(self):
 
         stock_excel.update_product_excel(self.product,self.ids.pro_id.text,self.ids.amount_id.text)
     def delate_product(self):

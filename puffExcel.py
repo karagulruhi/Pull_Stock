@@ -35,7 +35,7 @@ class PufExcell:
     
     def find_order_excel(self,order):
         
-         
+        self.orders=[] 
         if len(self.orders)==0:
             for row in self.sheet.iter_rows(min_row=1, min_col=1, max_row=None, max_col=2):
                 
@@ -55,7 +55,8 @@ class PufExcell:
                         self.orders.append(temp_orders)
                             
         self.save_workbook()
-       
+     
+        
         
         return self.orders
     def saving_private_row(self, row_value):

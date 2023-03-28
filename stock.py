@@ -21,15 +21,25 @@ class StockExcell:
         self.book.save(self.file_path)
 
     
-    def add_stock(self,*args):   
+    def add_stock(self, *args):
+        args = list(args)
+        item_name = args[0]
 
-        for i in range(self.s_sheet.max_row, self.s_sheet.max_row+1):
-            self.s_sheet.append([i] + list(args))
+        # Check if item already exists in the sheet
+        for row in self.s_sheet.iter_rows():
+            if row[1].value == item_name:
+                print(f"{item_name} already exists in the sheet.")
+                return
 
-            self.save_workbook()
+        # If item doesn't exist, append it to the sheet
+        new_row = [self.s_sheet.max_row + 1] + args
+        self.s_sheet.append(new_row)
+        print(f"{item_name} has been added to the sheet.")
+
+        self.save_workbook()
     def find_product_excel(self,product):
         
-        print(product)
+        self.product=[]
         if len(self.product)==0:
             for row in self.s_sheet.iter_rows(min_row=1, min_col=1, max_row=None, max_col=2):
                 
@@ -55,7 +65,7 @@ class StockExcell:
     def update_product_excel(self, *args):
      
         args=list(args)
-        print(args)
+        
        
         for idx,arg in enumerate(args[1:],start=2):
   
