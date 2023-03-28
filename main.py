@@ -160,9 +160,12 @@ class StockControlScreen(Screen):
             erorr= Label(text='böyle bir ürün yok')
             layout.add_widget(erorr)
             self.add_widget(layout)
-    def update_product(self):
+    def updete_product(self):
 
         stock_excel.update_product_excel(self.product,self.ids.pro_id.text,self.ids.amount_id.text)
+    def delate_product(self):
+
+        stock_excel.delete_order_excel(self.product,self.ids.pro_id.text,self.ids.amount_id.text)
 class addStockScreen(Screen):
     def __init__(self, **kwargs):
         super(addStockScreen, self).__init__(**kwargs)

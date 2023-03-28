@@ -488,15 +488,24 @@
             id: pro_but
             size_hint_x: 0.2
             size_hint_y: 0.2
-            pos_hint: {'center_x': -0.2,'center_y': 0.4}
+            pos_hint: {'center_x': -0.2,'center_y': 0.7}
             on_press:
                 root.update_product()
             
         Button:
-            text:"Geri Dön"
+            text:"GERİ"
             id: back_m
             size_hint_x: 0.2
             size_hint_y: 0.2
             pos_hint: {'center_x': -0.2,'center_y': 0.1}
             on_press:
                 root.manager.current = 'searchstock'
+
+        Button:
+            text:"SİL"
+            id: back_m
+            size_hint_x: 0.2
+            size_hint_y: 0.2
+            pos_hint: {'center_x': -0.2,'center_y': 0.4}
+            on_press:
+                root.delate_product()

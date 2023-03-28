@@ -62,3 +62,9 @@ class StockExcell:
             self.s_sheet.cell(row=args[0], column=idx).value = arg     
         
         self.save_workbook()
+    def delete_order_excel(self, *args):
+       
+        
+        self.s_sheet.delete_rows(args[0])
+        self.save_workbook()
+            
