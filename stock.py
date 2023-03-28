@@ -31,7 +31,6 @@ class StockExcell:
                 print(f"{item_name} already exists in the sheet.")
                 return
 
-        # If item doesn't exist, append it to the sheet
         new_row = [self.s_sheet.max_row + 1] + args
         self.s_sheet.append(new_row)
         print(f"{item_name} has been added to the sheet.")
@@ -69,12 +68,16 @@ class StockExcell:
        
         for idx,arg in enumerate(args[1:],start=2):
   
-            self.s_sheet.cell(row=args[0], column=idx).value = arg     
+            self.s_sheet.cell(row=self.row_value, column=idx).value = arg     
         
         self.save_workbook()
     def delete_order_excel(self, *args):
-       
         
-        self.s_sheet.delete_rows(args[0])
+            
+         
+        
+        self.s_sheet.delete_rows(self.row_value)
+        
+        
         self.save_workbook()
             

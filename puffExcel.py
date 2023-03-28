@@ -75,9 +75,6 @@ class PufExcell:
         
      
     def delete_order_excel(self, *args):
-        for idx,arg in enumerate(args,start=2):
-            
-            self.sheet.cell(row=self.row_value, column=idx).value = arg
 
         
         self.sheet.delete_rows(self.row_value)

@@ -79,9 +79,7 @@ class ChooseOrderScreen(Screen):
         else:
              
             self.manager.get_screen('update').ids.pay_info_button_u.background_color= 1.0, 0.0, 0.0, 1.0
-        send_row= order[0]+1
-        
-        puff_excel.saving_private_row(send_row)
+ 
     
     
         
