@@ -19,7 +19,7 @@
             on_press:
                 root.manager.current = 'search'
         Button:
-            text:"STOK KONTROL"
+            text:"STOK EKLE"
             id: update_order
             size_hint:(0.2,.2)
             pos_hint:{'x':0.0,'y':0.35}
@@ -27,7 +27,7 @@
                 root.manager.current = 'addstock'
 
         Button:
-            text:"STOK ARA"
+            text:"STOK KONTROL ET"
             id: update_order
             size_hint:(0.2,.2)
             pos_hint:{'x':0.0,'y':0.15}
@@ -461,13 +461,13 @@
           
         TextInput:
             multiline:False
-            id:name_search
+            id:product_search
             padding_y:40,40
             
         Button:
             text:"ARA"
-            id: product_search
-            disabled: True if name_search.text == '' else False 
+            id: pro_but
+            disabled: True if product_search.text == '' else False 
             on_press:
                 root.manager.current = 'stock'
                 root.get_product()
@@ -477,3 +477,26 @@
             id: back
             on_press:
                 root.manager.current = 'main'
+<StockControlScreen>:
+    size_hint:0.6,0.7
+    pos_hint: {'center_x': 0.5,'center_y': 0.5}
+
+    FloatLayout:
+
+        Button:
+            text:"GÜNCELLE"
+            id: pro_but
+            size_hint_x: 0.2
+            size_hint_y: 0.2
+            pos_hint: {'center_x': -0.2,'center_y': 0.4}
+            on_press:
+                root.update_product()
+            
+        Button:
+            text:"Geri Dön"
+            id: back_m
+            size_hint_x: 0.2
+            size_hint_y: 0.2
+            pos_hint: {'center_x': -0.2,'center_y': 0.1}
+            on_press:
+                root.manager.current = 'searchstock'

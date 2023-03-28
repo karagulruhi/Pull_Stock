@@ -14,9 +14,9 @@ class StockExcell:
         self.product = [] 
         if "Stock" in self.book.sheetnames:
             self.s_sheet = self.book["Stock"]
-        else:
-            self.s_sheet = self.book.create_sheet("Stock")
-            self.s_sheet.append(('TÜR', 'ADET'))
+            if self.s_sheet.max_row == 1:
+                self.s_sheet.append(('PRO_N0','TÜR', 'ADET'))    
+
     def save_workbook(self):
         self.book.save(self.file_path)
 
@@ -24,12 +24,12 @@ class StockExcell:
     def add_stock(self,*args):   
 
         for i in range(self.s_sheet.max_row, self.s_sheet.max_row+1):
-            self.s_sheet.append(args)
+            self.s_sheet.append([i] + list(args))
 
             self.save_workbook()
     def find_product_excel(self,product):
         
-         
+        print(product)
         if len(self.product)==0:
             for row in self.s_sheet.iter_rows(min_row=1, min_col=1, max_row=None, max_col=2):
                 
@@ -51,4 +51,14 @@ class StockExcell:
         self.save_workbook()
         return self.product
         # for i in range(self.sheet.max_row, self.sheet.max_row+1):
-            
+    
+    def update_product_excel(self, *args):
+     
+        args=list(args)
+        print(args)
+       
+        for idx,arg in enumerate(args[1:],start=2):
+  
+            self.s_sheet.cell(row=args[0], column=idx).value = arg     
+        
+        self.save_workbook()

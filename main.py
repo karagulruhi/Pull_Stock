@@ -129,9 +129,40 @@ class NewOrderScreen(Screen):
 class StockControlScreen(Screen):
     def __init__(self, **kwargs):
         super(StockControlScreen, self).__init__(**kwargs)
+        
+        self.product=None
+    def on_enter(self):
+        
+        pro_search_screen = self.manager.get_screen('searchstock')
+        self.product = pro_search_screen.get_product()
+        self.create_label_text(self.product)
 
+    def create_label_text(self,product):
+        try:
+            layout = BoxLayout(orientation='vertical')
+            label1= Label(text='ÜRÜN')
+            product_name= TextInput(text=str(product[0][1]))
+            self.ids['pro_id'] = product_name
+            label2 = Label(text='ADET')
+            product_amount = TextInput(text=product[0][2])
+            self.ids['amount_id'] = product_amount
 
+            layout = BoxLayout(orientation='vertical')
+        
+            layout.add_widget(label1)
+            layout.add_widget(product_name)
+            layout.add_widget(label2)
+            layout.add_widget(product_amount)
+            self.add_widget(layout)
+            self.product=product[0][0]+1
+        except IndexError: 
+            print("Oops!  That was no valid number.  Try again...")
+            erorr= Label(text='böyle bir ürün yok')
+            layout.add_widget(erorr)
+            self.add_widget(layout)
+    def update_product(self):
 
+        stock_excel.update_product_excel(self.product,self.ids.pro_id.text,self.ids.amount_id.text)
 class addStockScreen(Screen):
     def __init__(self, **kwargs):
         super(addStockScreen, self).__init__(**kwargs)
